@@ -7,7 +7,7 @@
 [![Live](https://img.shields.io/badge/live-fractisi.vercel.app-0b1424)](https://fractisi.vercel.app)
 [![Product](https://img.shields.io/badge/product-Multi--Agent-c9a227)](https://fractisi.vercel.app/product/)
 [![Paper](https://img.shields.io/badge/paper-Multi--Agent-0b1424)](https://fractisi.vercel.app/library/papers/tiny-footprint-multi-agent/)
-[![Kit](https://img.shields.io/badge/kit-Workstation-444)](https://github.com/FractiAI/tiny-footprint-workstation)
+[![Kit](https://img.shields.io/badge/kit-Workstation-444)](https://github.com/FractiAI/tiny-footprint-multi-agent)
 [![Lab](https://img.shields.io/badge/lab-empirical%20suite-444)](https://github.com/FractiAI/tiny-oracle-lob-pilot)
 
 ---
@@ -73,11 +73,11 @@ Always keep the after-gzip / lab-proxy qualifier in diligence rooms.
 | **Server** | Enterprises | Company GPU / agent hosts |
 | **Cloud** | Hyperscale / GPU clouds | Provider infrastructure |
 
-- **Workstation kit:** [github.com/FractiAI/tiny-footprint-workstation](https://github.com/FractiAI/tiny-footprint-workstation)
+- **Workstation kit:** [github.com/FractiAI/tiny-footprint-multi-agent](https://github.com/FractiAI/tiny-footprint-multi-agent)
 - **Empirical suite + paper source:** [github.com/FractiAI/tiny-oracle-lob-pilot](https://github.com/FractiAI/tiny-oracle-lob-pilot)
 
 ```bash
-git clone https://github.com/FractiAI/tiny-footprint-workstation.git
+git clone https://github.com/FractiAI/tiny-footprint-multi-agent.git
 cd tiny-footprint-workstation
 node scripts/tiny.mjs doctor
 node scripts/tiny.mjs install
