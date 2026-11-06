@@ -39,6 +39,8 @@ This repository is the **static commercial site** deployed to [fractisi.vercel.a
 | `/research/` | Research program + open evaluation |
 | `/library/` | Papers index |
 | `/library/papers/tiny-footprint-multi-agent/` | Flagship Multi-Agent paper |
+| `/library/papers/fractisi-expedition-002-beyond-memory/` | Research Expedition 002 · Beyond Memory |
+| `/docs/web/expedition-002-brochure.html` | Expedition 002 brochure |
 | `/open/` | Why we stay open |
 | `/company/` | Company |
 | `/recruit/` | Founding executive recruit |
