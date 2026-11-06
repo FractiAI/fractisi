@@ -1,0 +1,40 @@
+{
+  "name": "fractisi-multi-agent",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "FractiSI Multi-Agent \u2014 Tiny Footprint execution + coordination/composition platform (Workstation kit)",
+  "license": "UNLICENSED",
+  "author": "FractiAI",
+  "homepage": "https://fractisi.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FractiAI/FractiSI-Multi-Agent.git"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "bin": {
+    "tiny": "./scripts/tiny.mjs",
+    "fractisi": "./scripts/tiny.mjs"
+  },
+  "scripts": {
+    "test": "node scripts/run_node_tests.mjs",
+    "coverage": "node scripts/run_node_tests.mjs --experimental-test-coverage",
+    "doctor": "node scripts/tiny.mjs doctor",
+    "install-kit": "node scripts/tiny.mjs install",
+    "demo": "node scripts/tiny.mjs demo",
+    "benchmark": "node scripts/tiny.mjs benchmark",
+    "report": "node scripts/tiny.mjs report",
+    "join": "node scripts/tiny.mjs join",
+    "share": "node scripts/tiny.mjs share",
+    "research": "node research/synthobs-tiny-gateway-rhyming-templates/scripts/run_empirical_pipeline.mjs",
+    "research:synthobs-tiny-gateway-rhyming-templates": "npm run research",
+    "pipeline": "node scripts/run_pipeline.mjs",
+    "rebuild": "node scripts/run_pipeline.mjs --rebuild",
+    "verify": "node scripts/verify_project.mjs",
+    "coord-bench": "node scripts/tiny.mjs coord-bench",
+    "init": "node scripts/tiny.mjs init",
+    "status": "node scripts/tiny.mjs status"
+  }
+}
