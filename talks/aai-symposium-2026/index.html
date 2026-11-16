@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Multi-Agent World Inference Rhyme? · Applied Active Inference Symposium 2026</title>
+  <meta name="description" content="Applied Active Inference Symposium, Nov 12–13, 2026: superintelligence as human and digital agents holding one world together, demonstrated as a Test Drive. Audience track at /test-drive/.">
+  <link rel="stylesheet" href="deck.css">
+  <style>
+    :root {
+      --bg: #0a0d0c;
+      --panel: #121715;
+      --ink: #f2f4f1;
+      --muted: rgba(242, 244, 241, 0.62);
+      --line: rgba(255, 255, 255, 0.1);
+      --gold: #7fd1b0;
+      --accent: #7fd1b0;
+      --serif: "Inter", ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --sans: var(--serif);
+      --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    }
+    html, body { background: var(--bg); font-family: var(--serif); -webkit-font-smoothing: antialiased; }
+    a { text-decoration-color: rgba(127, 209, 176, 0.4); text-underline-offset: 0.18em; }
+    button { font-weight: 540; }
+    .chrome { background: rgba(10, 13, 12, 0.88); -webkit-backdrop-filter: saturate(160%) blur(14px); backdrop-filter: saturate(160%) blur(14px); }
+    .brand { font-weight: 650; letter-spacing: -0.035em; }
+    .meta, #progress, .chip { font-family: var(--mono); font-size: 0.74rem; letter-spacing: 0.04em; }
+    .audience-banner { background: var(--panel); font-family: var(--serif); }
+    .audience-banner code { font-family: var(--mono); font-size: 0.82em; color: var(--ink); }
+    .part, .label, .ide-cue span, .notes-head {
+      font-family: var(--mono);
+      font-weight: 500;
+      letter-spacing: 0.1em;
+    }
+    .part { font-size: 0.74rem; }
+    .slide { max-width: 66rem; padding-top: clamp(2rem, 6vh, 4.5rem); }
+    .slide h1 { font-weight: 640; letter-spacing: -0.045em; line-height: 1.04; font-size: clamp(2.2rem, 5.4vw, 3.9rem); max-width: 22ch; text-wrap: balance; }
+    .bullets { max-width: 40rem; list-style: none; padding-left: 0; font-size: clamp(1.05rem, 1.7vw, 1.28rem); line-height: 1.5; color: rgba(242, 244, 241, 0.86); }
+    .bullets li { margin: 0; padding: 0.7rem 0 0.7rem 1.1rem; border-top: 1px solid var(--line); position: relative; }
+    .bullets li:last-child { border-bottom: 1px solid var(--line); }
+    .bullets li::before { content: ""; position: absolute; left: 0; top: 1.28rem; width: 0.4rem; height: 0.4rem; border-radius: 50%; background: var(--accent); }
+    .bullets strong { color: #fff; font-weight: 600; }
+    .punch { font-weight: 560; letter-spacing: -0.02em; color: var(--accent); max-width: 34rem; font-size: clamp(1.25rem, 2.4vw, 1.7rem); line-height: 1.3; }
+    .ide-cue { border: 1px solid var(--line); border-left: 2px solid var(--accent); background: var(--panel); border-radius: 8px; font-size: 0.9rem; color: var(--muted); }
+    .ide-cue code { font-family: var(--mono); font-size: 0.82rem; color: var(--ink); background: rgba(255, 255, 255, 0.06); }
+    .ide-cue strong { color: var(--ink); font-weight: 600; }
+    .stack { list-style: none; padding-left: 0; font-size: clamp(1rem, 1.6vw, 1.15rem); color: rgba(242, 244, 241, 0.86); }
+    .stack li { margin: 0; padding: 0.6rem 0; border-top: 1px solid var(--line); }
+    .stack li:last-child { border-bottom: 1px solid var(--line); }
+    .stack-layout { display: grid; grid-template-columns: minmax(0, 14rem) 1fr; gap: 1.5rem; align-items: start; }
+    .stack-tree-figure img { border: 1px solid var(--line); border-radius: 10px; }
+    .stack-tree-figure figcaption { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.04em; color: var(--muted); opacity: 1; }
+    .thanks { font-family: var(--serif); font-size: 1.05rem; color: var(--muted); }
+    .notes-panel { background: #0d1210; color: rgba(242, 244, 241, 0.82); }
+    @media (max-width: 800px) { .stack-layout { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="chrome" aria-label="Deck controls">
+    <a class="brand" href="/">FractiSI</a>
+    <span class="meta">Same arc as the Test Drive</span>
+    <div class="controls">
+      <a class="chip" href="/test-drive/" target="_blank" rel="noopener">Test Drive</a>
+      <a class="chip" href="/blog/aai-symposium-2026/" target="_blank" rel="noopener">Blog</a>
+      <a class="chip" href="https://github.com/FractiAI/FractiSI-Multi-Agent" target="_blank" rel="noopener">GitHub</a>
+      <button type="button" id="btn-notes" title="Toggle speaker notes (N)">Notes</button>
+      <button type="button" id="btn-prev" title="Previous (←)">←</button>
+      <span id="progress" aria-live="polite">1 / 14</span>
+      <button type="button" id="btn-next" title="Next (→ or Space)">→</button>
+    </div>
+  </div>
+  <p class="audience-banner">
+    Audience track: <a href="/test-drive/" target="_blank" rel="noopener">/test-drive/</a> in the browser.
+    Same steps in an IDE: <a href="https://github.com/FractiAI/FractiSI-Multi-Agent" target="_blank" rel="noopener">repo</a> · <code>node scripts/tiny.mjs testdrive</code>.
+    The deck is optional for presenters.
+  </p>
+
+  <main id="deck" class="deck" tabindex="0">
+
+    <section class="slide is-active" data-part="Open" data-time="2 min" aria-label="Slide 1">
+      <p class="part">The case</p>
+      <h1>The Multi-Agent World Inference Rhyme?</h1>
+      <ul class="bullets">
+        <li>Applied Active Inference Symposium · Nov 12–13, 2026</li>
+        <li>Our position: superintelligence is not one model in a box</li>
+        <li>It is human and digital agents holding one world together — the Test Drive is a working piece of it</li>
+        <li>We start with a story about awareness, then six live tests · about twenty minutes · run by you</li>
+      </ul>
+      <p class="punch">Awareness first. Then evidence.</p>
+      <p class="ide-cue"><span>You</span> Open <a href="/test-drive/" target="_blank" rel="noopener">/test-drive/</a> → <strong>Begin</strong> · IDE <code>node scripts/tiny.mjs testdrive</code></p>
+      <aside class="notes">
+        <p>Say the title. State the position plainly: superintelligence as a shared world, not one model. Then promise evidence, not argument. Nobody has to decide anything.</p>
+      </aside>
+    </section>
+
+    <section class="slide" data-part="Story" data-time="2 min" aria-label="Slide 2">
+      <p class="part">Awareness</p>
+      <h1>The same song.</h1>
+      <ul class="bullets">
+        <li>I work as a restroom valet and play music there, much of it made by AI</li>
+        <li>Most of a night, nobody notices — the sound is just the room</li>
+        <li>When someone finds out it is AI, the mood changes almost at once</li>
+        <li>Same speakers, same songs. Awareness framed the sensory observations.</li>
+      </ul>
+      <p class="punch">Awareness decides how a shared world is received — by people and by digital agents.</p>
+      <p class="ide-cue"><span>On track</span> /test-drive/#story</p>
+      <aside class="notes">
+        <p>First person, brief. Land how awareness frames sensing. Then introduce FractiSI as the demonstration.</p>
+      </aside>
+    </section>
+
+    <section class="slide" data-part="Demonstration" data-time="2 min" aria-label="Slide 3">
+      <p class="part">The demonstration</p>
+      <h1>Why this is a Test Drive.</h1>
+      <ul class="bullets">
+        <li>Awareness is what makes an observation mean something</li>
+        <li>FractiSI Multi-Agent introduces a shared Fractal Holographic Goldilocks Superintelligence World Awareness</li>
+        <li>Human agents and digital agents collaborating in one shared world — not many private copies</li>
+        <li>Not theory. A coherent, operating demonstration, run by you, nothing taken on faith.</li>
+        <li><strong>The question:</strong> when many agents share one world, does the way they organize it rhyme?</li>
+      </ul>
+      <p class="punch">That is why we call this a Test Drive.</p>
+      <p class="ide-cue"><span>On track</span> /test-drive/#welcome</p>
+      <aside class="notes">
+        <p>Name the architecture. Say it is demonstration, not lecture. Then move to the sandbox.</p>
+      </aside>
+    </section>
+
+    <section class="slide" data-part="Sandbox" data-time="1.5 min" aria-label="Slide 3">
+      <p class="part">Sandbox</p>
+      <h1>Where you are.</h1>
+      <ul class="bullets">
+        <li><strong>Syntheverse Sandbox</strong> is the room · <strong>Base Mainnet</strong> is the bedrock</li>
+        <li>Human operators and digital agents work the same shared world inside it</li>
+        <li>Enter and leave when you choose, and set how aware you want to be</li>
+        <li>No wallet · no account · nothing for sale</li>
+      </ul>
+      <p class="punch">Look around. Leave whenever you like.</p>
+      <p class="ide-cue"><span>On track</span> /test-drive/ beat 3</p>
+      <aside class="notes">
+        <p>One minute. Entry and exit are voluntary.</p>
+      </aside>
+    </section>
+
+    <section class="slide" data-part="Problem" data-time="2 min" aria-label="Slide 4">
+      <p class="part">The idea</p>
+      <h1>What goes wrong with many agents.</h1>
+      <ul class="bullets">
+        <li><strong>Copies:</strong> ten agents (human or digital), ten copies of one world</li>
+        <li><strong>Memory:</strong> every copy fills it</li>
+        <li><strong>Paraphrase:</strong> exact-text caches go cold when agents reword</li>
+        <li><strong>Discovery and convergence:</strong> a skim misses answers several links away</li>
+        <li><strong>Collisions:</strong> agents overwrite each other · revisited at the stack</li>
+      </ul>
+      <p class="punch">Keep one world for people and digital agents. Each stores only what differs.</p>
+      <p class="ide-cue"><span>On track</span> /test-drive/ beat 4</p>
+      <aside class="notes">
+        <p>Four of the five are tested live. Say up front that collisions get an honest answer later.</p>
+      </aside>
+    </section>
+
+    <section class="slide" data-part="Rhyme" data-time="2.5 min" aria-label="Slide 5">
+      <p class="part">The idea</p>
+      <h1>Net Zero, then rhyme.</h1>
+      <ul class="bullets">
+        <li><strong>Net Zero:</strong> balanced zero, not nothing zero · root of the world human and digital agents share · octave 0</li>
+        <li><strong>Rhyme:</strong> organized alike even when the words differ</li>
+        <li>Four pillars, all required, rooted at Net Zero: repeating · self-similar · self-correcting · recursive</li>
+        <li>A pattern that passes becomes a Rhyming Template and is reused. Matching words or a cache hit do not qualify.</li>
+      </ul>
+      <p class="punch">Balanced zero, not nothing zero.</p>
+      <p class="ide-cue"><span>On track</span> /test-drive/ beat 5</p>
+      <aside class="notes">
+        <p>Define Net Zero first. Then the four pillars. Keep the kinship with active inference separate from the software gate.</p>
+      </aside>
+    </section>
+
+    <section class="slide" data-part="Test 1" data-time="2 min" aria-label="Slide 6">
+      <p class="part">Live test 1</p>
+      <h1>Twelve agents, one copy.</h1>
+      <p class="punch">Twelve agents · 5,992 B of full copies vs 845 B shared · 85.9% smaller</p>
+      <p class="ide-cue"><span>Run now</span> <a href="/test-drive/#1" target="_blank" rel="noopener">/test-drive/#1 → Run the test</a> · IDE <code>testdrive 1</code></p>
+      <aside class="notes">
+        <p>Let them press Run. Read the two byte counts aloud, then move on.</p>
+      </aside>
+    </section>
+
+    <section class="slide" data-part="Test 2" data-time="2 min" aria-label="Slide 7">
+      <p class="part">Live test 2</p>
+      <h1>More agents, same memory.</h1>
+      <p class="punch">The same 12,004 bytes holds 24 agents as full copies and 232 sharing one world · 9.7×</p>
+      <p class="ide-cue"><span>Run now</span> <a href="/test-drive/#7" target="_blank" rel="noopener">/test-drive/#7 → Run the test</a> · IDE <code>testdrive 7</code></p>
+      <aside class="notes">
+        <p>This is what the saving buys: headroom.</p>
+      </aside>
+    </section>
+
+    <section class="slide" data-part="Test 3" data-time="2 min" aria-label="Slide 8">
+      <p class="part">Live test 3</p>
+      <h1>Same job, different words.</h1>
+      <p class="punch">Exact-text cache: 0 hits · Rhyming Templates stored 45.0% less</p>
+      <p class="ide-cue"><span>Run now</span> <a href="/test-drive/#3" target="_blank" rel="noopener">/test-drive/#3 → Run the test</a> · IDE <code>testdrive 3</code></p>
+      <aside class="notes">
+        <p>A rhyme here is organization, not spelling. Keep it apart from the kinship with active inference.</p>
+      </aside>
+    </section>
+
+    <section class="slide" data-part="Test 4" data-time="2 min" aria-label="Slide 9">
+      <p class="part">Live test 4</p>
+      <h1>Answers six links deep.</h1>
+      <p class="punch">100 of 100 found, against 0 of 100 for a flat skim · same budget</p>
+      <p class="ide-cue"><span>Run now</span> <a href="/test-drive/#4" target="_blank" rel="noopener">/test-drive/#4 → Run the test</a> · IDE <code>testdrive 4</code></p>
+      <aside class="notes">
+        <p>Let the score land. Then add: 85% fewer operations and 50% fewer rounds.</p>
+      </aside>
+    </section>
+
+
+    <section class="slide" data-part="Test 5" data-time="2 min" aria-label="Slide 10">
+      <p class="part">Live test 5</p>
+      <h1>Git awareness · cleaner merges.</h1>
+      <p class="punch">Conventional: 2 failed merges · FractiSI: 0 failed merges, 2 overlaps blocked before Git · 100% fewer failed merges</p>
+      <p class="ide-cue"><span>Run now</span> <a href="/test-drive/#git" target="_blank" rel="noopener">/test-drive/#git → Run the test</a> · IDE <code>testdrive git</code></p>
+      <aside class="notes">
+        <p>Portable cloud lab git by default. Optional GitHub token uses the operator’s GitHub. Same workload either way.</p>
+      </aside>
+    </section>
+
+    <section class="slide" data-part="Stack" data-time="2.5 min" aria-label="Slide 11">
+      <p class="part">The stack</p>
+      <h1>The stack, bottom to top.</h1>
+      <div class="stack-layout">
+        <figure class="stack-tree-figure">
+          <img src="/media/fractisi-multi-agent-stack-tree.jpg?v=1" alt="FractiSI Multi-Agent stack tree chart" width="864" height="1152" />
+          <figcaption>SING13 plate · updated trunk</figcaption>
+        </figure>
+        <ol class="stack">
+          <li>Base Mainnet → Syntheverse Sandbox → Net Zero (balanced zero)</li>
+          <li>Infinite Octaves → Holographic rhyme gate → Rhyming Templates · Tiny Gateway</li>
+          <li>Tiny Footprint → Coordination · Shared state · Composition</li>
+          <li>Git awareness (free · measured cleaner merges) → Deploy (paid, Team and up) → FractiSI Multi-Agent</li>
+        </ol>
+      </div>
+      <p class="punch">Coordination: at 25 agents it logged more conflicts than plain branching. That is the measured result.</p>
+      <p class="ide-cue"><span>On track</span> /test-drive/#how-stack · <a href="/media/fractisi-multi-agent-stack-tree.svg">SVG</a></p>
+      <aside class="notes">
+        <p>Point at the trunk. Do not recite every name. State the coordination result plainly: 3.7 against 1.7 conflicts at 25 agents, with slightly more useful work. These are one-machine labs, not production benchmarks.</p>
+      </aside>
+    </section>
+
+
+    <section class="slide" data-part="Test 6" data-time="2 min" aria-label="Slide 12">
+      <p class="part">Live test 6</p>
+      <h1>Rehearse the future. Change the world on approval.</h1>
+      <p class="punch">Imagination chooses who goes first · +1.4 useful at 32 agents · +3.6 at 100 · never more than 5% behind</p>
+      <p class="ide-cue"><span>Run now</span> <a href="/test-drive/#futures" target="_blank" rel="noopener">/test-drive/#futures → Run the test</a> · IDE <code>testdrive futures</code></p>
+      <aside class="notes">
+        <p>Three stores: real world · proposals · predictions. A prediction cannot overwrite the real world without approval. Opt-in lab · not a world-model wrap · not active inference.</p>
+      </aside>
+    </section>
+    <section class="slide" data-part="Invite" data-time="2 min" aria-label="Slide 13">
+      <p class="part">Go further</p>
+      <h1>Run it yourself.</h1>
+      <ul class="bullets">
+        <li><strong>Results board:</strong> 85.9% smaller · 9.7× density · 45.0% rhyme save · 100/100 discovery · 100% fewer Git failed merges · <strong>+3.6 useful at 100 agents</strong></li>
+        <li><strong>In your IDE:</strong> give your agent the repo link and say “Do the FractiSI Multi-Agent test drive” · Community is free</li>
+        <li><strong>Explore:</strong> <a href="/expedition-002/">Expedition 002</a> · <a href="/pricing/">plans</a> · deploy is paid, Team and up</li>
+        <li><strong>Musical path:</strong> <a href="/test-drive/musical/">16-chapter training</a> · <a href="https://suno.com/s/QB8n2fLhy5NORPkV" target="_blank" rel="noopener">Suno playlist</a></li>
+        <li><strong>Connect:</strong> <a href="mailto:valetpru@gmail.com">valetpru@gmail.com</a> · Valet Pru</li>
+        <li><strong>Beta:</strong> ask for a seat by email</li>
+      </ul>
+      <p class="thanks">One world. Human and digital agents. Held together. Thank you.</p>
+      <p class="ide-cue"><span>Finish</span> <a href="/test-drive/#invite" target="_blank" rel="noopener">/test-drive/#invite</a> · the page recaps what each person ran</p>
+      <aside class="notes">
+        <p>Leave time for questions. Deploy is paid. Everything else in the tour is free.</p>
+      </aside>
+    </section>
+
+  </main>
+
+  <footer class="notes-panel" id="notes-panel" hidden>
+    <div class="notes-head">
+      <strong>Speaker notes</strong>
+      <span id="notes-time"></span>
+    </div>
+    <div id="notes-body"></div>
+  </footer>
+
+  <script src="deck.js"></script>
+</body>
+</html>
